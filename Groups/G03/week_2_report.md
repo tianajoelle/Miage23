@@ -1,3 +1,5 @@
+STEPHANIE SECTION
+----------------------------------------
 # Report on Message Dispatch in Pharo
 
 ---
@@ -189,7 +191,50 @@ Transcript show: number upperCase; cr.
 
   All infos and details reported here were found by watching MOOC videos on youtube, reading the pdf slides from https://advanced-design-mooc.pharo.org/#module1  http://files.pharo.org/media/pharoCheatSheet.pdf and code snippets from playgroung.
 
+JOELLE SECTION
+------------------------------
+**Practice message dispatch**
 
+L'envoi de message basique en Pharo fonctionne de manière similaire à d'autres langages orientés objet.
+Exemple:
+``` pharo
+Object subclass: Person [
+   | name age |
+
+   Person >> initialize [
+       name := 'John'.
+       age := 30.
+   ]
+
+   Person >> getName [
+       ^name.
+   ]
+   Person >> getAge [
+       ^age.
+   ]
+].
+| person |
+person := Person new.
+Transcript show: (person getName); cr.
+Transcript show: (person getAge); cr.
+```
+Ce programme fonctionne comme prévu. L'objet Person est instancié et les méthodes getName et getAge retournent respectivement "John" et 30. La documentation sur les classes et les messages en Pharo dans le MOOC est bien fournie, ce qui m'a permis de comprendre facilement ce comportement.
+
+Dispatch Message avec arguments
+------------------------------------------------------
+Les messages en Pharo peuvent prendre différents types d'arguments, et le mécanisme de dispatch les transmet aux méthodes de l'objet
+Exemple:
+``` pharo
+
+Calculator >> concatenate: string1 with: string2 [
+    ^string1 , string2.
+].
+| result |
+result := calc concatenate: 'Hello ' with: 'World'.
+Transcript show: result; cr.  
+
+```
+Le résultat attendu c'est que ça va afficher "Hello World". Un point important que j'ai retenu dans cet exercice est que les arguments sont passés dans l'ordre où ils apparaissent dans le message.
 
 
 
